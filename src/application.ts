@@ -12,6 +12,9 @@ import {MySequence} from './sequence';
 
 export {ApplicationConfig};
 
+require('dotenv').config();
+const apiKey = `${process.env.API_KEY}`;
+
 export class WeatherAppApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
 ) {

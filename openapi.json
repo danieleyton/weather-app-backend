@@ -1,0 +1,95 @@
+
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "weather-app",
+    "version": "0.0.1",
+    "description": "una app para ver el clima",
+    "contact": {
+      "name": "daniel",
+      "email": "daniel.labra@usach.cl"
+    }
+  },
+  "paths": {
+    "/ping": {
+      "get": {
+        "x-controller-name": "PingController",
+        "x-operation-name": "ping",
+        "tags": [
+          "PingController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ping Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingResponse"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "PingController.ping"
+      }
+    },
+    "/{countryName}": {
+      "post": {
+        "x-controller-name": "WeatherController",
+        "x-operation-name": "getWeather",
+        "tags": [
+          "WeatherController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of WeatherController.getWeather"
+          }
+        },
+        "parameters": [
+          {
+            "name": "countryName",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "WeatherController.getWeather"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "PingResponse": {
+        "type": "object",
+        "title": "PingResponse",
+        "properties": {
+          "greeting": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "headers": {
+            "type": "object",
+            "properties": {
+              "Content-Type": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  }
+}
